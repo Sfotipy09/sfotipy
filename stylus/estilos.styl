@@ -1,3 +1,4 @@
+@import "nib"
 @import "normalize.styl"
 @import "fonts.styl"
 
@@ -5,6 +6,12 @@ gris_oscuro = #333333
 gris_claro = #81818181
 rojo = #BD255B
 gris_mas_claro = #F0F0F0
+
+/*animacion(parametro)
+	-webkit-animation parametro
+	-moz-animation parametro
+	-ms-animation parametro
+	animation parametro*/
 
 a
 	text-decoration none
@@ -99,6 +106,7 @@ ul
 		height 5px
 		position relative
 		width 30%
+		animation 10s state infinite linear
 	.circle
 		background gris_oscuro
 		border-radius 50%	
@@ -107,6 +115,20 @@ ul
 		right 0
 		top -2px
 		width 10px
+		animation 1s circle infinite
+
+@keyframes state
+	0%
+		width 0
+	100%
+		width 100%
+@keyframes circle
+	0%
+		transform scale(1)
+	100%
+		transform scale(2)
+		opacity 0
+		
 .header
 	height 3.5em
 	// a
@@ -130,6 +152,7 @@ ul
 .playing
 	&.small
 		width 20em
+		margin 0 auto
 .input
 	border 1px solid gris_claro
 	height 2.5em
@@ -146,7 +169,41 @@ ul
 	right .5em
 	color gris_claro
 	font-size 1.2em
-	
+.playlist
+	border-left 1px solid gris_claro
+	display none
+	padding 0 2em
+	width 22em
+	.list
+		list-style none
+	.item
+		padding 1em 0
+	.action
+		font-size .8em		
+.isotipo
+	width 122px
+.avatar
+	width 38px
+	height 38px		 
+.username
+	color gris_claro
+	position relative
+	top 9px
+	margin-left .5em
+	&:after  //triangulo
+		border-left 7px solid transparent
+		border-right 7px solid transparent
+		border-top 9px solid gris_claro
+		content ""
+		display inline-block
+		margin-left .5em				
+.logo
+	background white
+	display none
+	overflow hidden
+	padding 1.3em 0
+
+
 @media screen and (min-width:480px)
 	.song
 		&:nth-child(even)
@@ -161,13 +218,20 @@ ul
 	
 @media screen and (min-width:1000px)
 	body
-		background gris_claro
+		background gris_mas_claro
 	.button-menu
 		display none
+	.playing
+		padding-top 1.3em
+		&.large
+			margin 0 auto
+			width 62.5em
+			overflow hidden
 	.menu
 		display block
 		background gris_mas_claro
 		overflow hidden //para que contenga los elementos con float
+		border-top 1px solid gris_claro
 		.item
 			float left
 			list-style none
@@ -180,29 +244,17 @@ ul
 				border-top 5px solid transparent
 				&:hover
 					border-top 5px solid gris_claro
+	.music
+		width 32.5em
+		float left
+		.description
+			display none
+		
 	.header
 		height auto
+		border none
 		.title
 			display none
-	.isotipo
-		width 122px
 	.logo
-		padding 1.3em 0
-		overflow hidden
-		background white
-	.avatar
-		width 38px
-		height 38px		 
-	.username
-		color gris_claro
-		position relative
-		top 9px
-		margin-left .5em
-		&:after  //triangulo
-			border-left 7px solid transparent
-			border-right 7px solid transparent
-			border-top 9px solid gris_claro
-			content ""
-			display inline-block
-			margin-left .5em
-			
+	.playlist
+		display block
